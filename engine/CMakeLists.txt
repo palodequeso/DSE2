@@ -8,6 +8,9 @@ set(SRCS
     ./include/core/system.h
 	./src/core/component.cpp
 	./include/core/component.h
+	
+	./src/resources/resource.cpp
+	./include/resources/resource.h
 )
 
 IF (WIN32)
