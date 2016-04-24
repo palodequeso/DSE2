@@ -10,8 +10,8 @@ namespace DSE {
 			//
 		}
 
-		tbb::task *System::execute(void) {
-			return NULL;
+		void System::Run(void) {
+			//
 		}
 	}
 }

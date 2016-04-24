@@ -3,9 +3,12 @@
 
 #include <iostream>
 
+#include "engine/include/core/component.h"
+#include "engine/include/resources/resource.h"
+
 namespace DSE {
 	namespace Resources {
-		class Resource {
+		class Resource : public DSE::Core::Component {
 			public:
 				enum ResourceType {
 					TYPE_NONE = 0,

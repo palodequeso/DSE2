@@ -22,7 +22,7 @@ IF (WIN32)
 		${DeepSpaceGames_SOURCE_DIR}
         ${CMAKE_CURRENT_BINARY_DIR})
     link_directories(${DEPENDS_DIR}/lib)
-    set(EXTLIBS sfml-graphics sfml-window sfml-system sfml-audio sfml-network glew32 tbb)
+    set(EXTLIBS sfml-graphics sfml-window sfml-system sfml-audio sfml-network glew32)
 ELSE (WIN32)
     find_package(Protobuf REQUIRED)
     set(CMAKE_CXX_FLAGS_DEBUG "-g -pg -ggdb -Wall -std=c++11 -Wno-reorder")

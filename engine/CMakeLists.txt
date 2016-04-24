@@ -4,13 +4,19 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR}/../)
 
 set(SRCS
     # core
+	./src/core/application.cpp
+	./include/core/application.h
     ./src/core/system.cpp
     ./include/core/system.h
 	./src/core/component.cpp
 	./include/core/component.h
+	./src/core/scheduler.cpp
+	./include/core/scheduler.h
 	
 	./src/resources/resource.cpp
 	./include/resources/resource.h
+	./src/resources/resource_manager.cpp
+	./include/resources/resource_manager.h
 )
 
 IF (WIN32)
