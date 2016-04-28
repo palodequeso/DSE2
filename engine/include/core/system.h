@@ -12,11 +12,11 @@ namespace DSE {
                 System(void);
                 ~System(void);
 
-				virtual void Run(void);
-			protected:
-				std::vector<Component *> components;
+                virtual void Run(void);
+            protected:
+                std::vector<Component *> components;
             private:
-				//
+                //
         };
     }
 }

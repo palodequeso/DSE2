@@ -2,17 +2,17 @@
 #define DSE_APPLICATION_H
 
 namespace DSE {
-	namespace Core {
-		class Application {
-			public:
-				Application(void);
-				~Application(void);
+    namespace Core {
+        class Application {
+            public:
+                Application(void);
+                ~Application(void);
 
-				void Start(void);
-			private:
-				bool running;
-		};
-	}
+                void Start(void);
+            private:
+                bool running;
+        };
+    }
 }
 
 #endif

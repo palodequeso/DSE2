@@ -19,20 +19,22 @@ IF (WIN32)
         #${DEPENDS_DIR}/include/postgres/server
         #${DEPENDS_DIR}/include/postgres/server/port/win32
         ${DEPENDS_DIR}/include
-		${DeepSpaceGames_SOURCE_DIR}
+        ${DeepSpaceGames_SOURCE_DIR}
         ${CMAKE_CURRENT_BINARY_DIR})
     link_directories(${DEPENDS_DIR}/lib)
     set(EXTLIBS sfml-graphics sfml-window sfml-system sfml-audio sfml-network glew32)
 ELSE (WIN32)
-    find_package(Protobuf REQUIRED)
-    set(CMAKE_CXX_FLAGS_DEBUG "-g -pg -ggdb -Wall -std=c++11 -Wno-reorder")
-    set(CMAKE_CXX_FLAGS_RELEASE "-Wall -std=c++11 -Wno-reorder")
-    set(CMAKE_SHARED_LINKER_FLAGS "-pg -g")
+    #find_package(Protobuf REQUIRED)
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -pg -ggdb -Wall -std=c++11 -pthread -Wno-reorder")
+    set(CMAKE_CXX_FLAGS_RELEASE "-Wall -std=c++11 -Wno-reorder -pthread")
+    set(CMAKE_SHARED_LINKER_FLAGS "-pg -g -pthread")
+    set(DEPENDS_DIR ${DeepSpaceGames_SOURCE_DIR}/dependencies/)
+    include_directories(
+        ${DEPENDS_DIR}/include
+        ${DeepSpaceGames_SOURCE_DIR}
+        ${CMAKE_CURRENT_BINARY_DIR})
     add_definitions(-pg -Wall -ggdb -std=c++11)
-    include_directories(/usr/local/include/ /usr/local/include/bullet/ /usr/include/postgresql/9.4/server/ ${CMAKE_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
-    set(EXTLIBS sfml-graphics sfml-window sfml-system sfml-audio sfml-network GL
-        GLEW glut GLU Xrandr awesomium-1-7 tbb boost_system boost_filesystem BulletDynamics BulletCollision
-        LinearMath ${PROTOBUF_LIBRARY})
+    set(EXTLIBS sfml-graphics sfml-window sfml-system sfml-audio sfml-network)
 ENDIF (WIN32)
 
 #add_subdirectory(common)
