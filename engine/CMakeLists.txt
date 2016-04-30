@@ -12,7 +12,14 @@ set(SRCS
     ./include/core/component.h
     ./src/core/scheduler.cpp
     ./include/core/scheduler.h
+    ./src/core/events.cpp
+    ./include/core/events.h
     
+    #game
+    ./src/game/game.cpp
+    ./include/game/game.h
+    
+    #resources
     ./src/resources/resource.cpp
     ./include/resources/resource.h
     ./src/resources/resource_manager.cpp

@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "engine/include/core/component.h"
+#include "engine/include/core/scheduler.h"
 
 namespace DSE {
     namespace Core {

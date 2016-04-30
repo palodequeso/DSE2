@@ -2,7 +2,7 @@
 
 namespace DSE {
     namespace Core {
-        Application::Application(void) {
+        Application::Application(DSE::Game::Game *_game) : game(_game) {
             running = true;
         }
 

@@ -1,7 +1,7 @@
 #ifndef DSE_SCHEDULER_H
 #define DSE_SCHEDULER_H
 
-#define DSEScheduler Scheduler::Instance()
+#define DSEScheduler DSE::Core::Scheduler::Instance()
 
 #include <unordered_map>
 #include "ctpl_stl.h"

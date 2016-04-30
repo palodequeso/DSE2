@@ -3,6 +3,13 @@
 namespace DSE {
     namespace Core {
         Scheduler *Scheduler::singleton_instance = NULL;
+
+        Scheduler *Scheduler::Instance() {
+            if (!singleton_instance) {
+                singleton_instance = new Scheduler();
+            }
+            return singleton_instance;
+        }
         
         Scheduler::Scheduler(void) {
             pool = new ctpl::thread_pool(8);
@@ -12,13 +19,6 @@ namespace DSE {
         Scheduler::~Scheduler(void) {
             delete pool;
             dedicated_threads.clear();
-        }
-
-        Scheduler *Scheduler::Instance() {
-            if (!singleton_instance) {
-                singleton_instance = new Scheduler();
-            }
-            return singleton_instance;
         }
         
         template<typename F, typename... Rest>
