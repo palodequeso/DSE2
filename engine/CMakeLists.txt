@@ -18,12 +18,20 @@ set(SRCS
     #game
     ./src/game/game.cpp
     ./include/game/game.h
-    
+	./src/game/entity.cpp
+	./include/game/entity.h
+	./src/game/scene.cpp
+	./include/game/scene.h
+	    
     #resources
     ./src/resources/resource.cpp
     ./include/resources/resource.h
     ./src/resources/resource_manager.cpp
     ./include/resources/resource_manager.h
+
+	#graphics
+	./src/graphics/renderer.cpp
+	./include/graphics/renderer.h
 )
 
 IF (WIN32)

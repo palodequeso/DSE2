@@ -2,7 +2,7 @@
 
 namespace DSE {
     namespace Game {
-        Game::Game(void) {
+        Game::Game(Scene *_scene) : scene(_scene) {
             //
         }
         

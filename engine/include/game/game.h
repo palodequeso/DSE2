@@ -6,11 +6,13 @@
 #include "engine/include/core/scheduler.h"
 #include "engine/include/core/system.h"
 
+#include "engine/include/game/scene.h"
+
 namespace DSE {
     namespace Game {
         class Game {
             public:
-                Game(void);
+                Game(Scene *_scene);
                 ~Game(void);
                 
                 void Update(void);
@@ -21,6 +23,7 @@ namespace DSE {
                 virtual void Logic(void);
 
             private:
+				Scene *scene;
                 std::unordered_map<std::string, DSE::Core::System *> systems;
         };
     }
