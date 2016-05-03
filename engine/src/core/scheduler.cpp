@@ -1,3 +1,5 @@
+#include <thread>
+
 #include "engine/include/core/scheduler.h"
 
 namespace DSE {
@@ -12,23 +14,40 @@ namespace DSE {
         }
         
         Scheduler::Scheduler(void) {
-            pool = new ctpl::thread_pool(8);
-            dedicated_threads.clear();
+            //
         }
 
         Scheduler::~Scheduler(void) {
-            delete pool;
-            dedicated_threads.clear();
+            //
         }
         
-        template<typename F, typename... Rest>
-        auto Scheduler::AddTask(F && f, Rest &&... rest) -> std::future<decltype(f(0, rest...))> {
-            return pool->push(f, rest...);
+        void Scheduler::AddTask(DSE::Core::Task *task) {
+            tasks.push_back(task);
+        }
+
+        void Scheduler::AddTask(DSE::Core::SelfManagedTask *task) {
+            self_managing_tasks.push_back(task);
         }
         
-        template<typename F, typename... Rest>
-        void Scheduler::AddDedicatedTask(std::string name, F && task, Rest &&... rest) {
-            dedicated_threads[name] = std::thread(task, rest...);
+        void Scheduler::Start(void) {
+            // We probably don't have to use tbb enqueue here. but I did not take the time to find an alt yet
+            auto task_iter = self_managing_tasks.begin();
+            while (task_iter != self_managing_tasks.end()) {
+                tbb::task *task = *task_iter;
+                tbb::task::enqueue(*task);
+                ++task_iter;
+            }
+        }
+
+        void Scheduler::RunTasks(std::vector<DSE::Core::Task *> *tasks) {
+            tbb::parallel_do(tasks->begin(), tasks->end(), [&](DSE::Core::Task *task) {
+                task->Execute();
+            });
+        }
+
+        void Scheduler::Execute(float frame_time) {
+            std::thread t(Scheduler::RunTasks, &tasks);
+            t.join();
         }
 
     }

@@ -13,5 +13,9 @@ namespace DSE {
         void System::Run(void) {
             //
         }
+        
+        void System::Execute(void) {
+            Run();
+        }
     }
 }

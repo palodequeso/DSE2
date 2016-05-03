@@ -14,15 +14,17 @@ set(SRCS
     ./include/core/scheduler.h
     ./src/core/events.cpp
     ./include/core/events.h
+    ./src/core/task.cpp
+    ./include/core/task.h
     
     #game
     ./src/game/game.cpp
     ./include/game/game.h
-	./src/game/entity.cpp
-	./include/game/entity.h
-	./src/game/scene.cpp
-	./include/game/scene.h
-	    
+    ./src/game/entity.cpp
+    ./include/game/entity.h
+    ./src/game/scene.cpp
+    ./include/game/scene.h
+
     #resources
     ./src/resources/resource.cpp
     ./include/resources/resource.h

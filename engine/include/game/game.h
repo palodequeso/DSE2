@@ -8,6 +8,8 @@
 
 #include "engine/include/game/scene.h"
 
+#include "engine/include/graphics/renderer.h"
+
 namespace DSE {
     namespace Game {
         class Game {
@@ -23,7 +25,7 @@ namespace DSE {
                 virtual void Logic(void);
 
             private:
-				Scene *scene;
+                Scene *scene;
                 std::unordered_map<std::string, DSE::Core::System *> systems;
         };
     }

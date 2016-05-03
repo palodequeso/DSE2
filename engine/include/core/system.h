@@ -1,21 +1,24 @@
 #ifndef DSE_SYSTEM_H
 #define DSE_SYSTEM_H
 
+#include <tbb/tbb.h>
 #include <vector>
 
+#include "engine/include/core/task.h"
 #include "engine/include/core/component.h"
 #include "engine/include/core/scheduler.h"
 
 namespace DSE {
     namespace Core {
-        class System {
+        class System : public Task {
             public:
                 System(void);
                 ~System(void);
 
                 virtual void Run(void);
+                void Execute(void);
             protected:
-                std::vector<Component *> components;
+                tbb::concurrent_vector<Component *> components;
             private:
                 //
         };

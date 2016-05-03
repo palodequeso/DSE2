@@ -11,6 +11,10 @@ namespace DSE {
         }
         
         void Game::Update(void) {
+            auto system_iter = systems.begin();
+            while (system_iter != systems.end()) {
+                DSEScheduler->AddTask(system_iter->second);
+            }
             Logic();
         }
 

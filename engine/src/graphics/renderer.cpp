@@ -19,5 +19,9 @@ namespace DSE {
         Renderer::~Renderer(void) {
             delete instance;
         }
+        
+        void Renderer::Run(void) {
+            //
+        }
     }
 }

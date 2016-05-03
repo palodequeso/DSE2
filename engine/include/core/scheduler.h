@@ -4,7 +4,9 @@
 #define DSEScheduler DSE::Core::Scheduler::Instance()
 
 #include <unordered_map>
-#include "ctpl_stl.h"
+#include <tbb/tbb.h>
+
+#include "engine/include/core/task.h"
 
 namespace DSE {
     namespace Core {
@@ -15,15 +17,17 @@ namespace DSE {
                 
                 static Scheduler *Instance();
                 
-                template<typename F, typename... Rest>
-                auto AddTask(F && f, Rest &&... rest) -> std::future<decltype(f(0, rest...))>;
+                void AddTask(DSE::Core::Task *task);
+                void AddTask(DSE::Core::SelfManagedTask *task);
                 
-                template<typename F, typename ... Rest>
-                void AddDedicatedTask(std::string name, F && f, Rest &&... rest);
+                void Start(void);
+                void Execute(float frame_time);
 
             private:
-                ctpl::thread_pool *pool;
-                std::unordered_map<std::string, std::thread> dedicated_threads;
+                static void RunTasks(std::vector<DSE::Core::Task *> *tasks);
+
+                std::vector<DSE::Core::SelfManagedTask *> self_managing_tasks;
+                std::vector<DSE::Core::Task *> tasks;
                 
                 static Scheduler *singleton_instance;
         };
