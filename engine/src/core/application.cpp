@@ -12,7 +12,7 @@ namespace DSE {
 
         void Application::Start(void) {
             while (running) {
-                // Do Stuff
+                game->Update();
                 //running = false;
             }
         }

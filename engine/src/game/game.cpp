@@ -6,6 +6,7 @@ namespace DSE {
             // Enqueued tasks must have the allowcate_root method called!
             resource_manager = new (tbb::task::allocate_root()) DSE::Resources::ResourceManager();
             DSEScheduler->AddTask(resource_manager);
+            systems["renderer"] = new DSE::Graphics::Renderer();
             DSEScheduler->Start();
         }
 
@@ -17,7 +18,9 @@ namespace DSE {
             auto system_iter = systems.begin();
             while (system_iter != systems.end()) {
                 DSEScheduler->AddTask(system_iter->second);
+                ++system_iter;
             }
+            DSEScheduler->Execute(0.16f);
             Logic();
         }
 

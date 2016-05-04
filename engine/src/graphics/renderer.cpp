@@ -21,7 +21,7 @@ namespace DSE {
         }
         
         void Renderer::Run(void) {
-            //
+            std::cout << "Rendering" << std::endl;
         }
     }
 }

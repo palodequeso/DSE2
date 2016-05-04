@@ -51,6 +51,7 @@ namespace DSE {
         void Scheduler::Execute(float frame_time) {
             std::thread t(Scheduler::RunTasks, &tasks);
             t.join();
+            tasks.clear();
         }
 
     }
