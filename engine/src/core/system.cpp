@@ -17,5 +17,22 @@ namespace DSE {
         void System::Execute(void) {
             Run();
         }
+
+        
+        SelfManagedSystem::SelfManagedSystem(void) {
+            //
+        }
+        
+        SelfManagedSystem::~SelfManagedSystem(void) {
+            //
+        }
+        
+        void SelfManagedSystem::Run(void) {
+            //
+        }
+        
+        void SelfManagedSystem::Execute(void) {
+            Run();
+        }
     }
 }

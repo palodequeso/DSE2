@@ -10,6 +10,8 @@
 
 #include "engine/include/graphics/renderer.h"
 
+#include "engine/include/resources/resource_manager.h"
+
 namespace DSE {
     namespace Game {
         class Game {
@@ -27,6 +29,7 @@ namespace DSE {
             private:
                 Scene *scene;
                 std::unordered_map<std::string, DSE::Core::System *> systems;
+                DSE::Resources::ResourceManager *resource_manager;
         };
     }
 }

@@ -17,8 +17,25 @@ namespace DSE {
 
                 virtual void Run(void);
                 void Execute(void);
+
             protected:
                 tbb::concurrent_vector<Component *> components;
+
+            private:
+                //
+        };
+        
+        class SelfManagedSystem : public SelfManagedTask {
+            public:
+                SelfManagedSystem(void);
+                ~SelfManagedSystem(void);
+                
+                virtual void Run(void);
+                void Execute(void);
+
+            protected:
+                tbb::concurrent_vector<Component *> components;
+
             private:
                 //
         };

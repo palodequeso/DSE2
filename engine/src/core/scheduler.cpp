@@ -1,5 +1,7 @@
+#include <iostream>
 #include <thread>
 
+#include "engine/include/resources/resource_manager.h"
 #include "engine/include/core/scheduler.h"
 
 namespace DSE {
@@ -14,7 +16,8 @@ namespace DSE {
         }
         
         Scheduler::Scheduler(void) {
-            //
+            int thread_count = tbb::task_scheduler_init::default_num_threads();
+            std::cout << "Firing up " << thread_count << " threads!" << std::endl;
         }
 
         Scheduler::~Scheduler(void) {
@@ -33,8 +36,8 @@ namespace DSE {
             // We probably don't have to use tbb enqueue here. but I did not take the time to find an alt yet
             auto task_iter = self_managing_tasks.begin();
             while (task_iter != self_managing_tasks.end()) {
-                tbb::task *task = *task_iter;
-                tbb::task::enqueue(*task);
+                tbb::task *task = static_cast<tbb::task *>(*task_iter);
+                tbb::task::enqueue(*task, tbb::priority_low);
                 ++task_iter;
             }
         }

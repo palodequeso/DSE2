@@ -6,7 +6,7 @@
 
 namespace DSE {
     namespace Resources {
-        class ResourceManager : public DSE::Core::System {
+        class ResourceManager : public DSE::Core::SelfManagedSystem {
             public:
                 ResourceManager(void);
                 ~ResourceManager(void);

@@ -13,7 +13,7 @@ namespace DSE {
         void Application::Start(void) {
             while (running) {
                 // Do Stuff
-                running = false;
+                //running = false;
             }
         }
     }

@@ -3,11 +3,14 @@
 namespace DSE {
     namespace Game {
         Game::Game(Scene *_scene) : scene(_scene) {
-            //
+            // Enqueued tasks must have the allowcate_root method called!
+            resource_manager = new (tbb::task::allocate_root()) DSE::Resources::ResourceManager();
+            DSEScheduler->AddTask(resource_manager);
+            DSEScheduler->Start();
         }
-        
+
         Game::~Game(void) {
-            //
+            delete resource_manager;
         }
         
         void Game::Update(void) {
