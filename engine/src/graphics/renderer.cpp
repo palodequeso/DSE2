@@ -14,6 +14,27 @@ namespace DSE {
                 std::cerr << "Failed to create instance: " << result << std::endl;
                 abort();
             }
+            
+            // Query how many devices are present in the system
+            auto devices = instance->enumeratePhysicalDevices();
+            unsigned int device_count = devices.size();
+            if (device_count == 0) {
+                std::cerr << "There are no vulkan capable physical devices!" << std::endl;
+                abort();
+            }
+            
+            std::cout << "Found " << device_count << " vulkan devices!" << std::endl;
+
+            vk::DeviceQueueCreateInfo *device_queue_create_infos = new vk::DeviceQueueCreateInfo();
+            vk::DeviceCreateInfo *device_create_info = new vk::DeviceCreateInfo(0, 1, &device_queue_create_infos, 0, nullptr, 0, nullptr, nullptr);
+            vk::Device *device = nullptr;
+            devices.at(0).createDevice(device_create_info, nullptr, device);
+//             auto device_iter = devices.begin();
+//             while (device_iter != devices.end()) {
+//                 vk::PhysicalDevice *device = (*device_iter);
+//                 device->getDisplayPropertiesKHR()
+//                 ++device_iter;
+//             }
         }
 
         Renderer::~Renderer(void) {
@@ -21,7 +42,7 @@ namespace DSE {
         }
         
         void Renderer::Run(void) {
-            std::cout << "Rendering" << std::endl;
+//             std::cout << "Rendering" << std::endl;
         }
     }
 }
